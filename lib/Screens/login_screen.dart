@@ -18,49 +18,66 @@ class LoginScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
-        child: Center(
-          child: Column(
-            
-            children: [
-              //logo
-              const SizedBox(height: 120,), //giving space upove the logo
-              Image.asset('lib/img/logo.png'),
-              
-              //phrase
-              const Text('Login to your account',
-              style: TextStyle(
-                color: Color.fromRGBO(158, 158, 158, 1),
-                fontSize: 16,
-              ),
-              ),
+        child: SingleChildScrollView(
+          child: Center(
+            child: Column(
+              children: [
+                //logo
+                const SizedBox(
+                  height: 120,
+                ), //giving space upove the logo
+                Image.asset('lib/img/logo.png'),
 
-              //username textfield
-              const SizedBox(height: 31,),
-              GHTextField(
-                controller: usernameController,
-                hintText: '    Username',
-                obscureText: false,
-              ),
-            
-              //password textfield
-              const SizedBox(height: 18,),
-              GHTextField(
-                controller: passwordController,
-                hintText: '    Password',
-                obscureText: true,
-              ),
+                //phrase
+                const Text(
+                  'Login to your account',
+                  style: TextStyle(
+                    color: Color.fromRGBO(158, 158, 158, 1),
+                    fontSize: 16,
+                  ),
+                ),
 
-              //sign in button
-              const SizedBox(height: 35,),
-               ActionButton(
-                ontap: () => Navigator.push(context, MaterialPageRoute(builder:(context) => TheGreenHouse(),),),
-                text: 'Sign in',
-              ),
-              
-              //sign up option
-              const SizedBox(height: 20,),
-              const SignUpOption(),
-            ],
+                //username textfield
+                const SizedBox(
+                  height: 31,
+                ),
+                GHTextField(
+                  controller: usernameController,
+                  hintText: '    Username',
+                  obscureText: false,
+                ),
+
+                //password textfield
+                const SizedBox(
+                  height: 18,
+                ),
+                GHTextField(
+                  controller: passwordController,
+                  hintText: '    Password',
+                  obscureText: true,
+                ),
+
+                //sign in button
+                const SizedBox(
+                  height: 35,
+                ),
+                ActionButton(
+                  ontap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => TheGreenHouse(),
+                    ),
+                  ),
+                  text: 'Sign in',
+                ),
+
+                //sign up option
+                const SizedBox(
+                  height: 20,
+                ),
+                const SignUpOption(),
+              ],
+            ),
           ),
         ),
       ),
