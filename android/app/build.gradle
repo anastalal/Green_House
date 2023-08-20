@@ -25,6 +25,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
+
 android {
     compileSdkVersion flutter.compileSdkVersion
     ndkVersion flutter.ndkVersion
@@ -43,6 +44,7 @@ android {
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+        multiDexEnabled true
     }
 
     buildTypes {
@@ -56,4 +58,10 @@ android {
 
 flutter {
     source '../..'
+}
+apply plugin: "com.google.gms.google-services"
+dependencies {
+    // ... Your other dependencies
+
+    implementation 'androidx.multidex:multidex:2.0.1' // Add this line
 }

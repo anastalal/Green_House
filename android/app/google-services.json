@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "404478934288",
+    "firebase_url": "https://anas-d6217-default-rtdb.firebaseio.com",
+    "project_id": "anas-d6217",
+    "storage_bucket": "anas-d6217.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:404478934288:android:773bd0f8b3fe65f172b995",
+        "android_client_info": {
+          "package_name": "com.example.green_house"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWTpXA1gykPHnDmZVhTOaWpSwBgAabqRA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

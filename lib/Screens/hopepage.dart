@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:green_house/Components/BackButton.dart';
-
-import 'login_screen.dart';
+import 'package:green_house/Screens/login.dart';
 
 class TheGreenHouse extends StatelessWidget {
   const TheGreenHouse({super.key});
@@ -24,7 +23,7 @@ class TheGreenHouse extends StatelessWidget {
                     child: CustomBackButton(
                       onPressed: () => Navigator.of(context).pushReplacement(
                         MaterialPageRoute(
-                          builder: (context) => LoginScreen(),
+                          builder: (context) => Login(),
                         ),
                       ),
                     )
