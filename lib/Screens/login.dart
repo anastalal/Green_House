@@ -167,46 +167,44 @@ class _Login extends State<Login> {
                   ontap: () async {
                     await checkInternetConnection(context);
                     final email = usernameController?.text ?? "";
-                      final password = passwordController?.text ?? "";
-                      if (_formKey.currentState != null &&
-                          _formKey.currentState!.validate()) {
-                        // Show a loading indicator or animation here
+                    final password = passwordController?.text ?? "";
+                    if (_formKey.currentState != null &&
+                        _formKey.currentState!.validate()) {
+                      // Show a loading indicator or animation here
+                      showDialog(
+                        context: context,
+                        barrierDismissible: false,
+                        builder: (BuildContext context) {
+                          return Center(
+                            child:
+                                CircularProgressIndicator(), // You can use any loading animation here
+                          );
+                        },
+                      );
+                      // await checkInternetConnection(context);
+                      dynamic result = await _auth.signInEmailPassword(
+                          LoginUser(email: email, password: password));
+                      // Close the loading dialog
+                      // Navigator.pop(context);
+                      //    if (context != null) {
+                      //   Navigator.pop(context);
+                      // }
+
+                      if (result == null || result.uid == null) {
                         showDialog(
                           context: context,
-                          barrierDismissible: false,
-                          builder: (BuildContext context) {
-                            return Center(
-                              child:
-                                  CircularProgressIndicator(), // You can use any loading animation here
+                          builder: (context) {
+                            return AlertDialog(
+                              content: Text(result.code),
                             );
                           },
                         );
-                        // await checkInternetConnection(context);
-                        dynamic result = await _auth.signInEmailPassword(
-                            LoginUser(email: email, password: password));
-
-                        // Close the loading dialog
-                        Navigator.pop(context);
-
-                        if (result == null || result.uid == null) {
-                          showDialog(
-                            context: context,
-                            builder: (context) {
-                              return AlertDialog(
-                                content: Text(result.code),
-                              );
-                            },
-                          );
-                        }
-                        // else {
-                        //   print("object");
-                        //   Navigator.of(context).pushReplacement(
-                        //     MaterialPageRoute(
-                        //         builder: (BuildContext context) => Home()),
-                        //   );
-                        // }
                       }
-                    },
+                    }
+                    if (context != null) {
+                      Navigator.pop(context);
+                    }
+                  },
                   text: 'Sign in',
                 ),
 

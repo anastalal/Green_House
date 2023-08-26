@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:green_house/Components/action_button.dart';
+import 'package:green_house/services/auth.dart';
+import 'package:green_house/services/checkInternetConnection.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -13,41 +16,9 @@ class _Home2 extends State<Home2> {
   TextEditingController nitrogenController = TextEditingController();
   TextEditingController phosphorusController = TextEditingController();
   TextEditingController potassiumController = TextEditingController();
+  final AuthService _auth = new AuthService();
+
   String advice = '';
-
-  completionFun() async {
-    setState(() => advice = 'Loading...');
-
-    final response = await http.post(
-      Uri.parse('https://api.openai.com/v1/completions'),
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization':
-            'Bearer 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'
-      },
-      body: jsonEncode(
-        {
-          "model": "text-davinci-003",
-          "prompt": temperatureController.text,
-          "max_tokens": 50,
-          "temperature": 0,
-          "top_p": 1,
-        },
-      ),
-    );
-
-    setState(() {
-      if (response.statusCode == 200) {
-        final jsonResponse = jsonDecode(response.body);
-        // _responseModel = ResponseModel.fromJson(response.body);
-        // responseTxt = _responseModel.choices[0]['text'];
-        advice = jsonResponse['choices'][0]['text'];
-        // debugPrint(jsonResponse);
-        print("jsonResponse");
-      }
-      print(response.body);
-    });
-  }
 
   Future<void> getAdvice() async {
     setState(() => advice = 'Loading...');
@@ -93,6 +64,23 @@ class _Home2 extends State<Home2> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Green House'),
+        leading: Icon(
+          Icons.menu,
+        ),
+        actions: [
+          Padding(
+            padding: EdgeInsets.only(right: 20.0),
+            child: GestureDetector(
+              onTap: () async {
+                await checkInternetConnection(context);
+                await _auth.signOut();
+              },
+              child: Center(
+                child: Text("logout"),
+              ),
+            ),
+          ),
+        ],
       ),
       body: SafeArea(
         child: SingleChildScrollView(

@@ -159,48 +159,52 @@ class _Register extends State<Register> {
               ActionButton(
                 ontap: () async {
                   await checkInternetConnection(context);
-                    final email = usernameController?.text ?? "";
-                    final password = passwordController?.text ?? "";
+                  final email = usernameController?.text ?? "";
+                  final password = passwordController?.text ?? "";
 
-                    if (_formKey.currentState != null &&
-                        _formKey.currentState!.validate()) {
-                      // Show a loading indicator or animation here
+                  if (_formKey.currentState != null &&
+                      _formKey.currentState!.validate()) {
+                    // Show a loading indicator or animation here
+                    showDialog(
+                      context: context,
+                      barrierDismissible: false,
+                      builder: (BuildContext context) {
+                        return Center(
+                          child:
+                              CircularProgressIndicator(), // You can use any loading animation here
+                        );
+                      },
+                    );
+
+                    dynamic result = await _auth.registerEmailPassword(
+                        LoginUser(email: email, password: password));
+
+                    // Close the loading dialog
+                    // Navigator.pop(context);
+                    if (context != null) {
+                      Navigator.pop(context);
+                    }
+
+                    if (result == null || result.uid == null) {
                       showDialog(
                         context: context,
-                        barrierDismissible: false,
-                        builder: (BuildContext context) {
-                          return Center(
-                            child:
-                                CircularProgressIndicator(), // You can use any loading animation here
+                        builder: (context) {
+                          return AlertDialog(
+                            content: Text(result.code),
                           );
                         },
                       );
-
-                      dynamic result = await _auth.registerEmailPassword(
-                          LoginUser(email: email, password: password));
-
-                      // Close the loading dialog
-                      Navigator.pop(context);
-
-                      if (result == null || result.uid == null) {
-                        showDialog(
-                          context: context,
-                          builder: (context) {
-                            return AlertDialog(
-                              content: Text(result.code),
-                            );
-                          },
-                        );
-                      }
-                      else {
-                        print("object");
-                        Navigator.of(context).pushReplacement(
-                          MaterialPageRoute(
-                              builder: (BuildContext context) => Home()),
-                        );
-                      }
+                    } else {
+                      print("object");
+                      Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(
+                            builder: (BuildContext context) => Home()),
+                      );
                     }
-
+                    // if (context != null) {
+                    //   Navigator.pop(context);
+                    // }
+                  }
                 },
                 text: 'Register',
               ),
