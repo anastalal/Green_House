@@ -1,3 +1,4 @@
+import 'package:green_house/Screens/home/home2.dart';
 import 'package:provider/provider.dart';
 import 'package:green_house/screens/home/home.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +13,7 @@ class Wrapper extends StatelessWidget {
     if (user == null) {
       return Handler();
     } else {
-      return Home();
+      return Home2();
     }
   }
 }
