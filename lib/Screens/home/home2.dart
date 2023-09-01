@@ -42,8 +42,7 @@ class _Home2 extends State<Home2> {
       Uri.parse('https://api.openai.com/v1/completions'),
       headers: {
         "Content-Type": "application/json",
-        "Authorization":
-            "Bearer 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", // Replace with your API key
+        "Authorization": "Bearer Your Open AI Kek", // Replace with your API key
       },
       body: jsonEncode(requestData),
     );
