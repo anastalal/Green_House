@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:green_house/Screens/AboutUsPage.dart';
+import 'package:green_house/Screens/ContactUsPage.dart';
+import 'package:green_house/Screens/TermsAndConditionsPage.dart';
+import 'package:green_house/Screens/settings_screen.dart';
 import 'package:ternav_icons/ternav_icons.dart';
 
 import 'package:green_house/Screens/config/constant.dart';
@@ -25,27 +29,55 @@ class SideMenu extends StatelessWidget {
           DrawerListTile(
             icon: TernavIcons.lightOutline.qustion,
             title: "About Us",
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) =>
+                        AboutUsPage()), // استخدم MaterialPageRoute وقم بتمرير الملف الجديد هنا
+              );
+            },
           ),
           DrawerListTile(
             icon: TernavIcons.lightOutline.play_square,
             title: "Contact",
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) =>
+                        ContactUsPage()), // استخدم MaterialPageRoute وقم بتمرير الملف الجديد هنا
+              );
+            },
           ),
           DrawerListTile(
             icon: TernavIcons.lightOutline.discovery,
             title: "Terms & Conditions",
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) =>
+                        TermsAndConditions()), // استخدم MaterialPageRoute وقم بتمرير الملف الجديد هنا
+              );
+            },
           ),
-          DrawerListTile(
-            icon: TernavIcons.lightOutline.chat,
-            title: "Message",
-            onTap: () {},
-          ),
+          // DrawerListTile(
+          //   icon: TernavIcons.lightOutline.chat,
+          //   title: "Message",
+          //   onTap: () {},
+          // ),
           DrawerListTile(
             icon: TernavIcons.lightOutline.settings,
             title: "Settings",
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) =>
+                        Settings()), // استخدم MaterialPageRoute وقم بتمرير الملف الجديد هنا
+              );
+            },
           ),
           const SizedBox(
             height: 10,

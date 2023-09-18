@@ -31,14 +31,15 @@ class CourseGrid extends StatelessWidget {
                     children: [
                       Text(
                         nutrition[index].text,
-                        style: const TextStyle(color: Colors.white),
+                        style:
+                            const TextStyle(color: Colors.white, fontSize: 22),
                       ),
                       Text(
                         nutrition[index].lessons,
                         style: const TextStyle(color: Colors.white),
                       ),
                       CircularPercentIndicator(
-                        radius: 30,
+                        radius: 35,
                         lineWidth: 8,
                         animation: true,
                         animationDuration: 1500,
@@ -48,8 +49,9 @@ class CourseGrid extends StatelessWidget {
                             ? Colors.green
                             : Colors.red,
                         center: Text(
-                          "${nutrition[index].percent}%",
-                          style: const TextStyle(color: Colors.white),
+                          "${nutrition[index].percent}°",
+                          style: const TextStyle(
+                              color: Colors.white, fontSize: 15),
                         ),
                       )
                     ],

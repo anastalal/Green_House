@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:green_house/Screens/home/home.dart';
-import 'package:green_house/Screens/home/home2.dart';
+import 'package:green_house/Screens/home/AiPage.dart';
 import 'package:green_house/Screens/home/main_screen.dart';
 import 'package:green_house/Screens/settings_screen.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
@@ -55,7 +55,7 @@ class NavBottom extends StatelessWidget {
 }
 
 List<Widget> _buildScreens() {
-  return [MainScreen(), Home2(), Settings()];
+  return [MainScreen(), AiPage(), Settings()];
 }
 
 List<PersistentBottomNavBarItem> _navBarsItems() {
@@ -70,7 +70,8 @@ List<PersistentBottomNavBarItem> _navBarsItems() {
       inactiveColorPrimary: CupertinoColors.systemGrey,
     ),
     PersistentBottomNavBarItem(
-      icon: Icon(CupertinoIcons.bolt_fill),
+      icon: Image.asset("lib/img/ai_logo.png"),
+      inactiveIcon: Image.asset("lib/img/ai_icon.png"),
       activeColorSecondary: CupertinoColors.white,
       // opacity: 0,
       activeColorPrimary: const Color(0xFF51853F),

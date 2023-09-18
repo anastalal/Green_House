@@ -1,21 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:green_house/Components/action_button.dart';
+import 'package:green_house/Components/side_menu.dart';
 import 'package:green_house/services/auth.dart';
 import 'package:green_house/services/checkInternetConnection.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-class Home2 extends StatefulWidget {
+class AiPage extends StatefulWidget {
   @override
-  _Home2 createState() => _Home2();
+  _AiPage createState() => _AiPage();
 }
 
-class _Home2 extends State<Home2> {
+class _AiPage extends State<AiPage> {
   TextEditingController temperatureController = TextEditingController();
   TextEditingController moistureController = TextEditingController();
   TextEditingController nitrogenController = TextEditingController();
   TextEditingController phosphorusController = TextEditingController();
   TextEditingController potassiumController = TextEditingController();
+  String temperature = "40°";
+  String moisture = "35°";
+  String nitrogen = "67%";
+  String phosphorus = "60%";
+  String potassium = "70%";
   final AuthService _auth = new AuthService();
 
   String advice = '';
@@ -24,11 +30,11 @@ class _Home2 extends State<Home2> {
     setState(() => advice = 'Loading...');
     final Map<String, dynamic> requestData = {
       "prompt": "Given the following data:\n"
-          "Temperature: ${temperatureController.text}\n"
-          "Moisture: ${moistureController.text}\n"
-          "Nitrogen: ${nitrogenController.text}\n"
-          "Phosphorus: ${phosphorusController.text}\n"
-          "Potassium: ${potassiumController.text}\n"
+          "Temperature: $temperature\n"
+          "Moisture: $moisture\n"
+          "Nitrogen: $nitrogen\n"
+          "Phosphorus: $phosphorus\n"
+          "Potassium: $potassium\n"
           "Provide advice for optimal farming practices.",
       "max_tokens": 250,
       "model": "text-davinci-003",
@@ -62,25 +68,34 @@ class _Home2 extends State<Home2> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Green House'),
-        leading: Icon(
-          Icons.menu,
-        ),
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        iconTheme: const IconThemeData(color: Colors.grey, size: 28),
         actions: [
-          Padding(
-            padding: EdgeInsets.only(right: 20.0),
-            child: GestureDetector(
-              onTap: () async {
-                await checkInternetConnection(context);
-                await _auth.signOut();
-              },
-              child: Center(
-                child: Text("logout"),
-              ),
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(
+              Icons.refresh_rounded,
+              color: Colors.grey,
             ),
           ),
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(
+              Icons.notifications,
+              color: Colors.grey,
+            ),
+          ),
+          Container(
+            margin: const EdgeInsets.only(top: 5, right: 16, bottom: 5),
+            child: const CircleAvatar(
+              backgroundImage: AssetImage("lib/img/man.png"),
+              backgroundColor: Colors.blue,
+            ),
+          )
         ],
       ),
+      drawer: const SideMenu(),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
@@ -88,26 +103,24 @@ class _Home2 extends State<Home2> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Enter Farm Data:'),
-                TextFormField(
-                  controller: temperatureController,
-                  decoration: InputDecoration(labelText: 'Temperature'),
+                Wrap(
+                  spacing: 6.0,
+                  runSpacing: 6.0,
+                  children: <Widget>[
+                    _buildChip('Temperature',
+                        Color.fromARGB(255, 154, 157, 219), temperature),
+                    _buildChip('Moisture', Color.fromARGB(255, 154, 157, 219),
+                        moisture),
+                    _buildChip('Nitrogen', Color.fromARGB(255, 154, 157, 219),
+                        nitrogen),
+                    _buildChip('Phosphorus', Color.fromARGB(255, 154, 157, 219),
+                        phosphorus),
+                    _buildChip('Potassium', Color.fromARGB(255, 154, 157, 219),
+                        potassium),
+                  ],
                 ),
-                TextFormField(
-                  controller: moistureController,
-                  decoration: InputDecoration(labelText: 'Moisture'),
-                ),
-                TextFormField(
-                  controller: nitrogenController,
-                  decoration: InputDecoration(labelText: 'Nitrogen'),
-                ),
-                TextFormField(
-                  controller: phosphorusController,
-                  decoration: InputDecoration(labelText: 'Phosphorus'),
-                ),
-                TextFormField(
-                  controller: potassiumController,
-                  decoration: InputDecoration(labelText: 'Potassium'),
+                SizedBox(
+                  height: 30.0,
                 ),
                 ElevatedButton(
                   onPressed: () async {
@@ -134,4 +147,24 @@ class _Home2 extends State<Home2> {
       ),
     );
   }
+}
+
+Widget _buildChip(String label, Color color, String num) {
+  return Chip(
+    labelPadding: EdgeInsets.all(9.0),
+    avatar: CircleAvatar(
+      backgroundColor: Colors.white70,
+      child: Text(num),
+    ),
+    label: Text(
+      label,
+      style: TextStyle(
+        color: Colors.white,
+      ),
+    ),
+    backgroundColor: color,
+    elevation: 6.0,
+    shadowColor: Colors.grey[60],
+    padding: EdgeInsets.only(top: 8.0, bottom: 8.0, right: 8.0, left: 6.0),
+  );
 }
