@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:green_house/Components/CustomSnackBar.dart';
 import 'package:green_house/Components/signup_option.dart';
 import 'package:green_house/Components/textfield.dart';
-import 'package:green_house/Screens/home/home.dart';
-import 'package:green_house/Screens/hopepage.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:green_house/models/loginuser.dart';
 import 'package:green_house/services/checkInternetConnection.dart';

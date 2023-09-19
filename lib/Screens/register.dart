@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:green_house/Components/BackButton.dart';
-import 'package:green_house/Screens/home/home.dart';
+import 'package:green_house/Components/navBottom.dart';
+import 'package:green_house/Screens/home/main_screen.dart';
 import 'package:green_house/Screens/login.dart';
 import 'package:green_house/models/loginuser.dart';
 import 'package:green_house/services/auth.dart';
@@ -9,7 +10,6 @@ import 'package:green_house/services/checkInternetConnection.dart';
 import '../Components/action_button.dart';
 import '../Components/textfield.dart';
 import 'package:connectivity/connectivity.dart';
-import 'hopepage.dart';
 
 class Register extends StatefulWidget {
   // SignUpScreen({super.key});
@@ -198,7 +198,7 @@ class _Register extends State<Register> {
                       print("object");
                       Navigator.of(context).pushReplacement(
                         MaterialPageRoute(
-                            builder: (BuildContext context) => Home()),
+                            builder: (BuildContext context) => NavBottom()),
                       );
                     }
                     // if (context != null) {

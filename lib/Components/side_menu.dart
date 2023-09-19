@@ -3,6 +3,8 @@ import 'package:green_house/Screens/AboutUsPage.dart';
 import 'package:green_house/Screens/ContactUsPage.dart';
 import 'package:green_house/Screens/TermsAndConditionsPage.dart';
 import 'package:green_house/Screens/settings_screen.dart';
+import 'package:green_house/services/auth.dart';
+import 'package:green_house/services/checkInternetConnection.dart';
 import 'package:ternav_icons/ternav_icons.dart';
 
 import 'package:green_house/Screens/config/constant.dart';
@@ -14,6 +16,7 @@ class SideMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final AuthService _auth = new AuthService();
     return Drawer(
       width: MediaQuery.of(context).size.width / 1.5,
       child: ListView(
@@ -68,15 +71,11 @@ class SideMenu extends StatelessWidget {
           //   onTap: () {},
           // ),
           DrawerListTile(
-            icon: TernavIcons.lightOutline.settings,
-            title: "Settings",
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) =>
-                        Settings()), // استخدم MaterialPageRoute وقم بتمرير الملف الجديد هنا
-              );
+            icon: TernavIcons.lightOutline.logout,
+            title: "Logout",
+            onTap: () async {
+              await checkInternetConnection(context);
+              await _auth.signOut();
             },
           ),
           const SizedBox(

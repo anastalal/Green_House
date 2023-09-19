@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:green_house/Screens/home/home.dart';
 import 'package:green_house/Screens/home/AiPage.dart';
 import 'package:green_house/Screens/home/main_screen.dart';
 import 'package:green_house/Screens/settings_screen.dart';

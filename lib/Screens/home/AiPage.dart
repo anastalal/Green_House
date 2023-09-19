@@ -104,8 +104,8 @@ class _AiPage extends State<AiPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Wrap(
-                  spacing: 6.0,
-                  runSpacing: 6.0,
+                  spacing: 14.0,
+                  runSpacing: 14.0,
                   children: <Widget>[
                     _buildChip('Temperature',
                         Color.fromARGB(255, 154, 157, 219), temperature),

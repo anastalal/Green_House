@@ -78,10 +78,10 @@ class MainScreen extends StatelessWidget {
                     "Summary",
                     style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
                   ),
-                  Text(
-                    "View All",
-                    style: TextStyle(color: kDarkBlue),
-                  ),
+                  // Text(
+                  //   "View All",
+                  //   style: TextStyle(color: kDarkBlue),
+                  // ),
                 ],
               ),
               const SizedBox(
